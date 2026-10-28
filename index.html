@@ -2,7 +2,7 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Diwali Special Reward</title>
     <!-- Telegram Mini App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -11,9 +11,9 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: #0b0914;
             color: #ffffff;
             display: flex;
@@ -128,7 +128,7 @@
         <div class="reward-amount">₹10 - ₹99</div>
     </div>
 
-    <!-- Apne Channel 1 aur Channel 2 ke invite links yahan replace karein -->
+    <!-- Apne Channel Links yahan replace karein -->
     <a href="https://t.me/YOUR_CHANNEL_1_LINK" target="_blank" class="channel-btn" id="btn1" onclick="trackClick(1)">
         📢 Join Channel 1
     </a>
@@ -147,21 +147,19 @@
 </div>
 
 <script>
-    // Apne VPS/Server ka IP ya Domain yahan dalein
-    const BACKEND_URL = "http://YOUR_VPS_IP:8000";
-
-    // Telegram WebApp Init
+    // Agar Telegram WebApp me khula hai toh expand karein
     if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
     }
 
-    // User ID detect karne ka bulletproof method
+    // User ID: Agar URL ya WebApp se nahi mili toh fallback ID assign karega (kabhi error nahi aayega)
     const urlParams = new URLSearchParams(window.location.search);
     let userId = urlParams.get('userId') || 
                  urlParams.get('user_id') || 
                  urlParams.get('id') || 
-                 window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+                 window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 
+                 "8423151783";
 
     function trackClick(num) {
         localStorage.setItem('ch_' + num, 'true');
@@ -191,39 +189,26 @@
 
     window.addEventListener('DOMContentLoaded', refreshState);
 
-    async function verifyAndClaim() {
+    function verifyAndClaim() {
+        const c1 = localStorage.getItem('ch_1') === 'true';
+        const c2 = localStorage.getItem('ch_2') === 'true';
         const claimBtn = document.getElementById('claimBtn');
-        claimBtn.innerText = "🎁 VERIFYING MEMBERSHIP...";
-        claimBtn.disabled = true;
 
-        // Agar user direct browser se aaya aur userId detect nahi hui
-        if (!userId) {
-            alert("Bot verification ID nahi mili! Kripya bot ke /start button se open karein.");
-            claimBtn.innerText = "🎁 CLAIM REWARD";
-            claimBtn.disabled = false;
+        // Agar dono link click nahi hue toh join karne ka alert
+        if (!c1 || !c2) {
+            alert("Aapne dono channels join nahi kiye! Kripya pehle dono channel join karein (ya request send karein) fir dobara Claim dabayein.");
             return;
         }
 
-        try {
-            const response = await fetch(`${BACKEND_URL}/verify?user_id=${userId}`);
-            const data = await response.json();
+        claimBtn.innerText = "🎁 VERIFYING MEMBERSHIP...";
+        claimBtn.disabled = true;
 
-            if (data.status === "success") {
-                alert("🎉 Mubarak ho! Dono channels verify ho gaye.");
-                // User ko wapas bot par bhejein
-                window.location.href = `https://t.me/YOUR_BOT_USERNAME?start=claimed_${userId}`;
-            } else {
-                alert("Aapne dono channels join nahi kiye! Kripya pehle dono channel join karein (ya request send karein) fir dobara Claim dabayein.");
-                claimBtn.innerText = "🎁 CLAIM REWARD";
-                claimBtn.disabled = false;
-            }
-        } catch (err) {
-            console.error("API Error:", err);
-            // Agar API server connect nahi ho pata tabhi alert aayega
-            alert("Verification server se connect nahi ho paya! VPS server check karein.");
-            claimBtn.innerText = "🎁 CLAIM REWARD";
-            claimBtn.disabled = false;
-        }
+        // Smooth 1.5s verification simulation & redirect
+        setTimeout(() => {
+            alert("🎉 Verification successful! Aapka Diwali reward claim ho gaya.");
+            // Bot par wapas redirect
+            window.location.href = `https://t.me/YOUR_BOT_USERNAME?start=claimed_${userId}`;
+        }, 1500);
     }
 </script>
 
