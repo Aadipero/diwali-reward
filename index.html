@@ -40,7 +40,6 @@
             overflow: hidden;
         }
 
-        /* Top Festive Glow Badge */
         .diwali-badge {
             display: inline-flex;
             align-items: center;
@@ -78,7 +77,6 @@
             margin-bottom: 20px;
         }
 
-        /* Golden Festive Reward Card */
         .reward-box {
             background: linear-gradient(135deg, #f3a826 0%, #d48310 100%);
             border-radius: 16px;
@@ -104,7 +102,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* Action Buttons for Channels */
         .channel-btn {
             display: flex;
             align-items: center;
@@ -136,7 +133,6 @@
             font-size: 18px;
         }
 
-        /* Live Tracker Status */
         .status-tracker {
             font-size: 13px;
             color: #2ecc71;
@@ -145,7 +141,6 @@
             display: none;
         }
 
-        /* Primary Claim Button */
         .claim-btn {
             background: linear-gradient(135deg, #00b074 0%, #00875a 100%);
             color: #ffffff;
@@ -212,22 +207,14 @@
 </div>
 
 <script>
-    // Apne Bot ka EXACT username yahan likhein (bina @ ke)
-    const BOT_USERNAME = "DiwaliRewardBot"; 
+    // Aapka Zingoy claim link yahan set hai
+    const CLAIM_OFFER_URL = "https://zingoy.cuelinks.com/?ref=RWE6GD6";
 
     // Telegram WebApp expand
     if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
     }
-
-    // Auto-detect Telegram User ID
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('userId') || 
-                   urlParams.get('user_id') || 
-                   urlParams.get('id') || 
-                   window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 
-                   "8423151783";
 
     function handleChannelClick(num) {
         localStorage.setItem('ch_' + num, 'done');
@@ -267,18 +254,17 @@
         const claimBtn = document.getElementById('claimBtn');
 
         if (!c1 || !c2) {
-            alert("Aapne dono channels join nahi kiye! Kripya pehle dono channel join karein (ya request send karein) fir dobara Claim dabayein.");
+            alert("Aapne dono channels join nahi kiye! Kripya pehle dono channel join karein.");
             return;
         }
 
-        claimBtn.innerText = "⏳ VERIFYING MEMBERSHIP...";
+        claimBtn.innerText = "⏳ REDIRECTING TO OFFER...";
         claimBtn.disabled = true;
 
         setTimeout(() => {
-            alert("🎉 Verification successful! Aapka reward claim ho gaya.");
-            // Bot par redirect karega jisse Bot ka 'Global Claim' aur 'My Claim' +1 ho sake
-            window.location.href = `https://t.me/${BOT_USERNAME}?start=claimed_${userId}`;
-        }, 1400);
+            // User ko seedha Zingoy offer page par bhej dega
+            window.location.href = CLAIM_OFFER_URL;
+        }, 1000);
     }
 </script>
 
