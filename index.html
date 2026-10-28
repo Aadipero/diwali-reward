@@ -8,20 +8,17 @@
     :root {
       --bg-dark: #0c0818;
       --card-bg: rgba(255, 255, 255, 0.04);
-      --gold-gradient: linear-gradient(135deg, #f7ba2c 0%, #ea5455 100%);
-      --accent-gold: #ffb703;
       --text-main: #ffffff;
       --text-muted: #b8b3ce;
       --btn-bg: #fffbf0;
       --btn-text: #1a1528;
-      --green-unlocked: #10b981;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -43,95 +40,79 @@
       text-align: center;
     }
 
-    /* Festive Header */
-    .diya-icon {
-      font-size: 32px;
-      margin-bottom: 8px;
-      filter: drop-shadow(0 4px 10px rgba(255, 183, 3, 0.5));
+    .diya-icon { 
+      font-size: 30px; 
+      margin-bottom: 8px; 
     }
 
     .title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 900;
       letter-spacing: 1px;
       background: linear-gradient(180deg, #ffe27a 0%, #ff9e00 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .subtitle {
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px;
+    .subtitle { 
+      font-size: 15px; 
+      font-weight: 600; 
+      margin-bottom: 4px; 
     }
 
-    .desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.4;
-      margin-bottom: 22px;
+    .desc { 
+      font-size: 13px; 
+      color: var(--text-muted); 
+      line-height: 1.4; 
+      margin-bottom: 20px; 
     }
 
-    /* 3D Reward Box */
+    /* 3D Festive Box */
     .reward-box {
       width: 100%;
       background: linear-gradient(145deg, #f9b833, #f58418);
       border-radius: 20px;
-      padding: 22px 16px;
+      padding: 20px 16px;
       color: #3b1700;
-      box-shadow: 0 16px 30px rgba(245, 132, 24, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 16px 30px rgba(245, 132, 24, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.3);
       position: relative;
-      overflow: hidden;
       margin-bottom: 20px;
     }
 
-    .reward-box::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
-      pointer-events: none;
+    .tag { 
+      font-size: 11px; 
+      font-weight: 800; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase; 
+      color: #6d2f00; 
+      margin-bottom: 4px; 
     }
 
-    .tag {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #6d2f00;
-      margin-bottom: 4px;
+    .amount { 
+      font-size: 40px; 
+      font-weight: 900; 
+      color: #361200; 
+      line-height: 1.1; 
+      margin-bottom: 4px; 
     }
 
-    .amount {
-      font-size: 42px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      color: #361200;
-      line-height: 1.1;
-      margin-bottom: 4px;
+    .reward-sub { 
+      font-size: 14px; 
+      font-weight: 700; 
+      color: #4b1b00; 
+      margin-bottom: 8px; 
     }
 
-    .reward-sub {
-      font-size: 14px;
-      font-weight: 700;
-      color: #4b1b00;
-      margin-bottom: 10px;
+    .reward-hint { 
+      font-size: 12px; 
+      font-weight: 600; 
+      color: #5d2b07; 
     }
 
-    .reward-hint {
-      font-size: 12px;
-      font-weight: 500;
-      color: #5d2b07;
-    }
-
-    /* Action Buttons */
+    /* Channel Action Buttons */
     .action-btn {
       width: 100%;
       padding: 14px 18px;
@@ -141,40 +122,26 @@
       font-weight: 700;
       border-radius: 14px;
       border: none;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35), inset 0 -3px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       margin-bottom: 12px;
-      transition: all 0.25s ease;
-      text-decoration: none;
+      transition: all 0.2s ease;
     }
 
-    .action-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Clicked State */
     .action-btn.done {
       background: #e8fbf0;
       color: #065f46;
       border: 1px solid #34d399;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
     }
 
-    .status-text {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin: 6px 0 16px;
-      transition: color 0.3s;
-    }
-
-    .status-text.ready {
-      color: #34d399;
-      font-weight: 600;
+    .status-text { 
+      font-size: 12px; 
+      color: var(--text-muted); 
+      margin: 4px 0 16px; 
     }
 
     /* Claim Button */
@@ -183,34 +150,25 @@
       padding: 16px;
       font-size: 15px;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
       border-radius: 14px;
       border: none;
-      cursor: not-allowed;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      /* Locked State */
+      cursor: not-allowed;
       background: #474752;
       color: #8c8c9e;
       box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
     }
 
-    /* Unlocked State */
     .claim-btn.active {
       cursor: pointer;
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: #ffffff;
-      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
       animation: pulse 1.8s infinite;
-    }
-
-    .claim-btn.active:active {
-      transform: translateY(2px);
     }
 
     @keyframes pulse {
@@ -218,12 +176,11 @@
       50% { box-shadow: 0 8px 30px rgba(16, 185, 129, 0.7); }
     }
 
-    .footer-note {
-      font-size: 11px;
-      color: #79748f;
-      line-height: 1.4;
-      margin-top: 18px;
-      padding: 0 8px;
+    .footer-note { 
+      font-size: 11px; 
+      color: #79748f; 
+      line-height: 1.4; 
+      margin-top: 18px; 
     }
   </style>
 </head>
@@ -235,7 +192,7 @@
     <p class="subtitle">Happy Diwali! 🪔</p>
     <p class="desc">Celebrate the festival of lights with our special reward offer.</p>
 
-    <!-- 3D Festive Card -->
+    <!-- 3D Reward Box -->
     <div class="reward-box">
       <div class="tag">Festive Reward</div>
       <div class="amount">₹10 – ₹30</div>
@@ -243,7 +200,7 @@
       <div class="reward-hint" id="cardHint">Open both Telegram channel links to continue.</div>
     </div>
 
-    <!-- Telegram Channel Buttons -->
+    <!-- Buttons -->
     <button class="action-btn" id="btn1" onclick="openChannel(1)">
       <span id="btn1Icon">✈️</span>
       <span id="btn1Text">Join Telegram Channel 1</span>
@@ -257,65 +214,95 @@
     <p class="status-text" id="statusMessage">Open both channel links to unlock the Claim button.</p>
 
     <!-- Claim Reward Button -->
-    <a href="javascript:void(0)" class="claim-btn" id="claimBtn" onclick="handleClaim()">
+    <button class="claim-btn" id="claimBtn" onclick="handleClaim()">
       <span id="claimIcon">🔒</span>
-      <span id="claimText">Claim Diwali Reward</span>
-    </a>
+      <span id="claimText">CLAIM DIWALI REWARD</span>
+    </button>
 
-    <p class="footer-note">
-      Reward eligibility and availability depend on the offer terms. Clicking the channel buttons does not verify membership or guarantee a reward.
-    </p>
+    <p class="footer-note">Reward eligibility and availability depend on the offer terms.</p>
   </div>
 
   <script>
-    // === APNE LINKS YAHA UPDATE KAREIN ===
-    const TELEGRAM_LINK_1 = "https://t.me/+BVdVbLTiqSA4NWE1";
-    const TELEGRAM_LINK_2 = "https://t.me/hmm_tricks";
-    const CLAIM_FINAL_URL = "https://zingoy.cuelinks.com/?ref=RWE6GD6"; // Apna reward/cuelinks URL dalein
+    // Aapka Cloudflare Tunnel API Link
+    const BACKEND_API_URL = "https://delays-cafe-wearing-varied.trycloudflare.com";
 
-    // Tracking flags
+    let teleLink1 = "";
+    let teleLink2 = "";
+    let finalClaimUrl = "";
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get("uid");
+
     let clicked1 = false;
     let clicked2 = false;
+
+    // VPS Bot se live channels & claim links fetch karna
+    async function loadConfig() {
+      try {
+        const res = await fetch(`${BACKEND_API_URL}/get-config`);
+        const data = await res.json();
+        teleLink1 = data.ch1_link;
+        teleLink2 = data.ch2_link;
+        finalClaimUrl = data.claim_url;
+      } catch (err) {
+        console.error("Config fetch failed:", err);
+      }
+    }
+    loadConfig();
 
     function openChannel(num) {
       if (num === 1) {
         clicked1 = true;
-        window.open(TELEGRAM_LINK_1, "_blank");
+        window.open(teleLink1 || "https://t.me", "_blank");
         document.getElementById("btn1").classList.add("done");
         document.getElementById("btn1Icon").innerText = "✓";
         document.getElementById("btn1Text").innerText = "Channel 1 Link Opened";
       } else if (num === 2) {
         clicked2 = true;
-        window.open(TELEGRAM_LINK_2, "_blank");
+        window.open(teleLink2 || "https://t.me", "_blank");
         document.getElementById("btn2").classList.add("done");
         document.getElementById("btn2Icon").innerText = "✓";
         document.getElementById("btn2Text").innerText = "Channel 2 Link Opened";
       }
 
-      checkUnlock();
-    }
-
-    function checkUnlock() {
       if (clicked1 && clicked2) {
         const claimBtn = document.getElementById("claimBtn");
         claimBtn.classList.add("active");
         document.getElementById("claimIcon").innerText = "🎁";
-        document.getElementById("claimText").innerText = "CLAIM DIWALI REWARD";
-
-        const statusMsg = document.getElementById("statusMessage");
-        statusMsg.innerText = "Both channel links clicked! You can continue.";
-        statusMsg.classList.add("ready");
-
-        document.getElementById("cardHint").innerText = "Reward unlocked! Tap Claim below.";
+        document.getElementById("statusMessage").innerText = "Both links opened! Click claim to verify.";
+        document.getElementById("statusMessage").style.color = "#34d399";
       }
     }
 
-    function handleClaim() {
-      if (clicked1 && clicked2) {
-        // Final Claim page open
-        window.location.href = CLAIM_FINAL_URL;
-      } else {
-        alert("Pehle dono Telegram channel links open karein claim unlock karne ke liye!");
+    async function handleClaim() {
+      if (!clicked1 || !clicked2) {
+        alert("Pehle dono channels ke links open karein!");
+        return;
+      }
+
+      if (!userId) {
+        alert("Direct website kholna allowed nahi hai! Pehle Telegram bot me /start karein, wahan se mile link ko open karein.");
+        return;
+      }
+
+      const claimText = document.getElementById("claimText");
+      claimText.innerText = "VERIFYING MEMBERSHIP...";
+
+      try {
+        // VPS Bot se real membership check karna
+        const response = await fetch(`${BACKEND_API_URL}/verify?uid=${userId}`);
+        const data = await response.json();
+
+        if (data.joined === true) {
+          // Join verified! Redirect to claim link
+          window.location.href = finalClaimUrl;
+        } else {
+          claimText.innerText = "CLAIM DIWALI REWARD";
+          alert("Aapne dono channels join nahi kiye! Kripya pehle dono channel join karein (ya request send karein) fir dobara Claim dabayein.");
+        }
+      } catch (err) {
+        claimText.innerText = "CLAIM DIWALI REWARD";
+        alert("Verification server error! Kripya thodi der me dobara try karein.");
       }
     }
   </script>
