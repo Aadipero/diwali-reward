@@ -1,180 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diwali Special Reward</title>
-    <!-- Telegram WebApp SDK -->
+    <!-- Telegram Mini App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #0d0a1a;
+            background-color: #0b0914;
             color: #ffffff;
-            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 16px;
-            box-sizing: border-box;
         }
         .container {
-            background: #17122b;
+            background: #141124;
+            border: 1px solid #282142;
             border-radius: 20px;
-            padding: 24px 20px;
+            max-width: 400px;
             width: 100%;
-            max-width: 380px;
+            padding: 24px 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            border: 1px solid #2d2454;
+        }
+        .diwali-icons {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        h2 {
+            color: #e6b33a;
+            font-size: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #9d96b8;
+            line-height: 1.5;
+            margin-bottom: 18px;
         }
         .reward-card {
             background: linear-gradient(135deg, #d49520, #e6b33a);
-            color: #000;
-            border-radius: 12px;
-            padding: 16px;
-            margin: 15px 0;
-            font-weight: bold;
+            color: #1a1200;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(212, 149, 32, 0.25);
         }
-        .reward-card h1 { margin: 5px 0; font-size: 32px; }
-        .reward-title { font-size: 11px; letter-spacing: 1px; color: #422f00; }
-        .btn-link {
+        .reward-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+        .reward-amount {
+            font-size: 36px;
+            font-weight: 900;
+            margin-top: 4px;
+        }
+        .channel-btn {
             display: block;
-            background: #231b40;
+            background: #1e1935;
             color: #ffcc00;
             text-decoration: none;
-            padding: 12px;
+            padding: 13px;
             margin: 10px 0;
-            border-radius: 10px;
-            font-weight: 600;
-            border: 1px solid #48387d;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #3c3161;
+            transition: all 0.2s ease;
         }
-        .btn-link.visited {
-            background: #19382b;
+        .channel-btn.done {
+            background: #143023;
             border-color: #27ae60;
             color: #2ecc71;
         }
-        .status-msg {
-            color: #2ecc71;
+        .status-tracker {
             font-size: 13px;
-            margin: 12px 0 6px;
+            color: #2ecc71;
+            margin: 14px 0 6px;
             display: none;
+            font-weight: 500;
         }
         .claim-btn {
             background: #00875a;
-            color: white;
+            color: #ffffff;
             border: none;
             width: 100%;
-            padding: 14px;
-            border-radius: 10px;
+            padding: 15px;
             font-size: 15px;
             font-weight: bold;
+            border-radius: 12px;
             cursor: pointer;
             margin-top: 10px;
+            transition: 0.2s;
         }
         .claim-btn:disabled {
-            background: #2b3d36;
-            color: #8fa69c;
+            background: #25332c;
+            color: #72877c;
             cursor: not-allowed;
+        }
+        .footer-note {
+            font-size: 11px;
+            color: #635d80;
+            margin-top: 14px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div style="font-size: 28px;">🪔 ✨ 🎆</div>
-    <h2 style="color: #ffbe26; margin: 8px 0;">DIWALI SPECIAL OFFER</h2>
-    <p style="font-size: 13px; color: #9c97b8; margin: 0 0 15px;">Happy Diwali! 🪔<br>Celebrate the festival of lights with our special reward offer.</p>
+    <div class="diwali-icons">🪔 ✨ 🎆</div>
+    <h2>DIWALI SPECIAL OFFER</h2>
+    <p class="subtitle">Happy Diwali! 🪔<br>Celebrate the festival of lights with our special reward offer.</p>
 
     <div class="reward-card">
-        <div class="reward-title">FESTIVE REWARD</div>
-        <h1>₹10 - ₹99</h1>
+        <div class="reward-label">FESTIVE REWARD</div>
+        <div class="reward-amount">₹10 - ₹99</div>
     </div>
 
-    <!-- Replace with your channel invite links -->
-    <a href="https://t.me/YOUR_CHANNEL_1_LINK" target="_blank" class="btn-link" id="ch1" onclick="markLink('ch1')">
+    <!-- Apne Channel 1 aur Channel 2 ke invite links yahan replace karein -->
+    <a href="https://t.me/YOUR_CHANNEL_1_LINK" target="_blank" class="channel-btn" id="btn1" onclick="trackClick(1)">
         📢 Join Channel 1
     </a>
 
-    <a href="https://t.me/YOUR_CHANNEL_2_LINK" target="_blank" class="btn-link" id="ch2" onclick="markLink('ch2')">
+    <a href="https://t.me/YOUR_CHANNEL_2_LINK" target="_blank" class="channel-btn" id="btn2" onclick="trackClick(2)">
         📢 Join Channel 2
     </a>
 
-    <p class="status-msg" id="statusMsg">Both links opened! Click claim to verify.</p>
+    <div id="statusTracker" class="status-tracker">Both links opened! Click claim to verify.</div>
 
-    <button class="claim-btn" id="claimBtn" onclick="verifyMembership()">
+    <button class="claim-btn" id="claimBtn" onclick="verifyAndClaim()">
         🎁 CLAIM REWARD
     </button>
+
+    <div class="footer-note">Reward eligibility and availability depend on the offer terms.</div>
 </div>
 
 <script>
-    // Replace with your backend server URL (Render, Koyeb, VPS, or Railway)
-    const BACKEND_API_URL = "https://YOUR-BACKEND-SERVER.com"; 
+    // Apne VPS/Server ka IP ya Domain yahan dalein
+    const BACKEND_URL = "http://YOUR_VPS_IP:8000";
 
-    // Retrieve userId from Telegram WebApp or URL query param (?userId=xxxx)
+    // Telegram WebApp Init
+    if (window.Telegram?.WebApp) {
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+    }
+
+    // User ID detect karne ka bulletproof method
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id || urlParams.get('userId');
+    let userId = urlParams.get('userId') || 
+                 urlParams.get('user_id') || 
+                 urlParams.get('id') || 
+                 window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
-    function markLink(id) {
-        localStorage.setItem(id, 'true');
-        checkBothVisited();
+    function trackClick(num) {
+        localStorage.setItem('ch_' + num, 'true');
+        refreshState();
     }
 
-    function checkBothVisited() {
-        const v1 = localStorage.getItem('ch1') === 'true';
-        const v2 = localStorage.getItem('ch2') === 'true';
+    function refreshState() {
+        const c1 = localStorage.getItem('ch_1') === 'true';
+        const c2 = localStorage.getItem('ch_2') === 'true';
 
-        if (v1 && document.getElementById('ch1')) {
-            document.getElementById('ch1').classList.add('visited');
-            document.getElementById('ch1').innerText = "✅ Channel 1 Opened";
+        const b1 = document.getElementById('btn1');
+        const b2 = document.getElementById('btn2');
+        const tracker = document.getElementById('statusTracker');
+
+        if (c1 && b1) {
+            b1.classList.add('done');
+            b1.innerText = "✅ Channel 1 Opened";
         }
-        if (v2 && document.getElementById('ch2')) {
-            document.getElementById('ch2').classList.add('visited');
-            document.getElementById('ch2').innerText = "✅ Channel 2 Opened";
+        if (c2 && b2) {
+            b2.classList.add('done');
+            b2.innerText = "✅ Channel 2 Opened";
         }
-        if (v1 && v2) {
-            document.getElementById('statusMsg').style.display = 'block';
+        if (c1 && c2 && tracker) {
+            tracker.style.display = 'block';
         }
     }
 
-    window.onload = checkBothVisited;
+    window.addEventListener('DOMContentLoaded', refreshState);
 
-    async function verifyMembership() {
+    async function verifyAndClaim() {
         const claimBtn = document.getElementById('claimBtn');
         claimBtn.innerText = "🎁 VERIFYING MEMBERSHIP...";
         claimBtn.disabled = true;
 
-        // Agar user direct browser se aaya aur userId nahi mili
+        // Agar user direct browser se aaya aur userId detect nahi hui
         if (!userId) {
-            alert("Bot verification ID nahi mili! Kripya Telegram Bot ke andar diye gaye button se open karein.");
-            resetBtn();
+            alert("Bot verification ID nahi mili! Kripya bot ke /start button se open karein.");
+            claimBtn.innerText = "🎁 CLAIM REWARD";
+            claimBtn.disabled = false;
             return;
         }
 
         try {
-            const res = await fetch(`${BACKEND_API_URL}/verify?user_id=${userId}`);
-            const data = await res.json();
+            const response = await fetch(`${BACKEND_URL}/verify?user_id=${userId}`);
+            const data = await response.json();
 
             if (data.status === "success") {
-                alert("🎉 Verification successful! Aapka reward claim ho gaya.");
-                // Redirect user back to bot or success page
+                alert("🎉 Mubarak ho! Dono channels verify ho gaye.");
+                // User ko wapas bot par bhejein
                 window.location.href = `https://t.me/YOUR_BOT_USERNAME?start=claimed_${userId}`;
             } else {
                 alert("Aapne dono channels join nahi kiye! Kripya pehle dono channel join karein (ya request send karein) fir dobara Claim dabayein.");
-                resetBtn();
+                claimBtn.innerText = "🎁 CLAIM REWARD";
+                claimBtn.disabled = false;
             }
         } catch (err) {
-            console.error(err);
-            alert("Verification server se connect nahi ho paya. Dobara try karein!");
-            resetBtn();
+            console.error("API Error:", err);
+            // Agar API server connect nahi ho pata tabhi alert aayega
+            alert("Verification server se connect nahi ho paya! VPS server check karein.");
+            claimBtn.innerText = "🎁 CLAIM REWARD";
+            claimBtn.disabled = false;
         }
-    }
-
-    function resetBtn() {
-        const claimBtn = document.getElementById('claimBtn');
-        claimBtn.innerText = "🎁 CLAIM REWARD";
-        claimBtn.disabled = false;
     }
 </script>
 
