@@ -12,9 +12,11 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
+
         body {
-            background-color: #0b0914;
+            background: radial-gradient(circle at top, #1c1335 0%, #0a0714 100%);
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -22,193 +24,261 @@
             min-height: 100vh;
             padding: 16px;
         }
-        .container {
-            background: #141124;
-            border: 1px solid #282142;
-            border-radius: 20px;
-            max-width: 400px;
+
+        .card {
+            background: rgba(26, 20, 48, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            border-radius: 24px;
+            max-width: 390px;
             width: 100%;
-            padding: 24px 20px;
+            padding: 28px 20px 22px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
-        .diwali-icons {
-            font-size: 32px;
-            margin-bottom: 8px;
+
+        /* Top Festive Glow Badge */
+        .diwali-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 187, 38, 0.12);
+            border: 1px solid rgba(255, 187, 38, 0.35);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #ffd452;
+            font-weight: 600;
+            margin-bottom: 12px;
+            animation: pulseGlow 2.5s infinite;
         }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 187, 38, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 187, 38, 0.45); }
+        }
+
         h2 {
-            color: #e6b33a;
-            font-size: 20px;
-            letter-spacing: 1px;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #fff2a3, #ffb834);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 6px;
         }
+
         .subtitle {
             font-size: 13px;
-            color: #9d96b8;
+            color: #a49bc7;
             line-height: 1.5;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
-        .reward-card {
-            background: linear-gradient(135deg, #d49520, #e6b33a);
-            color: #1a1200;
-            border-radius: 14px;
-            padding: 18px;
-            margin-bottom: 18px;
-            box-shadow: 0 4px 15px rgba(212, 149, 32, 0.25);
+
+        /* Golden Festive Reward Card */
+        .reward-box {
+            background: linear-gradient(135deg, #f3a826 0%, #d48310 100%);
+            border-radius: 16px;
+            padding: 18px 16px;
+            margin-bottom: 20px;
+            color: #261600;
+            box-shadow: 0 8px 24px rgba(212, 131, 16, 0.35);
+            position: relative;
         }
-        .reward-label {
+
+        .reward-tag {
             font-size: 11px;
             font-weight: 800;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+            color: #4b3003;
+            text-transform: uppercase;
         }
-        .reward-amount {
-            font-size: 36px;
+
+        .reward-value {
+            font-size: 38px;
             font-weight: 900;
             margin-top: 4px;
+            letter-spacing: -0.5px;
         }
+
+        /* Action Buttons for Channels */
         .channel-btn {
-            display: block;
-            background: #1e1935;
-            color: #ffcc00;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #211a3b;
+            color: #f7d668;
             text-decoration: none;
-            padding: 13px;
+            padding: 14px 18px;
             margin: 10px 0;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: bold;
-            border: 1px solid #3c3161;
-            transition: all 0.2s ease;
+            border-radius: 14px;
+            font-size: 14.5px;
+            font-weight: 700;
+            border: 1px solid #3d3163;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-        .channel-btn.done {
-            background: #143023;
+
+        .channel-btn:active {
+            transform: scale(0.98);
+        }
+
+        .channel-btn.verified {
+            background: #143525;
             border-color: #27ae60;
             color: #2ecc71;
         }
+
+        .channel-btn .icon {
+            font-size: 18px;
+        }
+
+        /* Live Tracker Status */
         .status-tracker {
             font-size: 13px;
             color: #2ecc71;
+            font-weight: 600;
             margin: 14px 0 6px;
             display: none;
-            font-weight: 500;
         }
+
+        /* Primary Claim Button */
         .claim-btn {
-            background: #00875a;
+            background: linear-gradient(135deg, #00b074 0%, #00875a 100%);
             color: #ffffff;
             border: none;
             width: 100%;
-            padding: 15px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 800;
+            border-radius: 14px;
             cursor: pointer;
             margin-top: 10px;
-            transition: 0.2s;
+            box-shadow: 0 8px 24px rgba(0, 176, 116, 0.35);
+            transition: all 0.2s ease;
         }
+
+        .claim-btn:active {
+            transform: scale(0.98);
+        }
+
         .claim-btn:disabled {
-            background: #25332c;
-            color: #72877c;
+            background: #252b33;
+            color: #6a7684;
+            box-shadow: none;
             cursor: not-allowed;
         }
+
         .footer-note {
-            font-size: 11px;
-            color: #635d80;
-            margin-top: 14px;
+            font-size: 11.5px;
+            color: #6c6488;
+            margin-top: 16px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="diwali-icons">🪔 ✨ 🎆</div>
+<div class="card">
+    <div class="diwali-badge">🪔 Diwali Festive Gift</div>
     <h2>DIWALI SPECIAL OFFER</h2>
-    <p class="subtitle">Happy Diwali! 🪔<br>Celebrate the festival of lights with our special reward offer.</p>
+    <p class="subtitle">Dono channels join karein aur turant apna exclusive gift card reward unlock karein.</p>
 
-    <div class="reward-card">
-        <div class="reward-label">FESTIVE REWARD</div>
-        <div class="reward-amount">₹10 - ₹99</div>
+    <div class="reward-box">
+        <div class="reward-tag">FESTIVE VOUCHER</div>
+        <div class="reward-value">₹10 - ₹99</div>
     </div>
 
-    <!-- Apne Channel Links yahan replace karein -->
-    <a href="https://t.me/YOUR_CHANNEL_1_LINK" target="_blank" class="channel-btn" id="btn1" onclick="trackClick(1)">
-        📢 Join Channel 1
+    <!-- Apne Channel 1 aur 2 ke direct Telegram invite links yahan paste karein -->
+    <a href="https://t.me/YOUR_CHANNEL_1_LINK" target="_blank" class="channel-btn" id="btn1" onclick="handleChannelClick(1)">
+        <span>📢 Join Channel 1</span>
+        <span class="icon" id="icon1">➔</span>
     </a>
 
-    <a href="https://t.me/YOUR_CHANNEL_2_LINK" target="_blank" class="channel-btn" id="btn2" onclick="trackClick(2)">
-        📢 Join Channel 2
+    <a href="https://t.me/YOUR_CHANNEL_2_LINK" target="_blank" class="channel-btn" id="btn2" onclick="handleChannelClick(2)">
+        <span>📢 Join Channel 2</span>
+        <span class="icon" id="icon2">➔</span>
     </a>
 
-    <div id="statusTracker" class="status-tracker">Both links opened! Click claim to verify.</div>
+    <div id="trackerText" class="status-tracker">✅ Both links opened! Click claim to verify.</div>
 
-    <button class="claim-btn" id="claimBtn" onclick="verifyAndClaim()">
+    <button class="claim-btn" id="claimBtn" onclick="submitClaim()">
         🎁 CLAIM REWARD
     </button>
 
-    <div class="footer-note">Reward eligibility and availability depend on the offer terms.</div>
+    <div class="footer-note">Secure automated verification • Instant delivery</div>
 </div>
 
 <script>
-    // Agar Telegram WebApp me khula hai toh expand karein
+    // Apne Bot ka EXACT username yahan likhein (bina @ ke)
+    const BOT_USERNAME = "DiwaliRewardBot"; 
+
+    // Telegram WebApp expand
     if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
     }
 
-    // User ID: Agar URL ya WebApp se nahi mili toh fallback ID assign karega (kabhi error nahi aayega)
+    // Auto-detect Telegram User ID
     const urlParams = new URLSearchParams(window.location.search);
-    let userId = urlParams.get('userId') || 
-                 urlParams.get('user_id') || 
-                 urlParams.get('id') || 
-                 window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 
-                 "8423151783";
+    const userId = urlParams.get('userId') || 
+                   urlParams.get('user_id') || 
+                   urlParams.get('id') || 
+                   window.Telegram?.WebApp?.initDataUnsafe?.user?.id || 
+                   "8423151783";
 
-    function trackClick(num) {
-        localStorage.setItem('ch_' + num, 'true');
-        refreshState();
+    function handleChannelClick(num) {
+        localStorage.setItem('ch_' + num, 'done');
+        renderUI();
     }
 
-    function refreshState() {
-        const c1 = localStorage.getItem('ch_1') === 'true';
-        const c2 = localStorage.getItem('ch_2') === 'true';
+    function renderUI() {
+        const c1 = localStorage.getItem('ch_1') === 'done';
+        const c2 = localStorage.getItem('ch_2') === 'done';
 
         const b1 = document.getElementById('btn1');
         const b2 = document.getElementById('btn2');
-        const tracker = document.getElementById('statusTracker');
+        const i1 = document.getElementById('icon1');
+        const i2 = document.getElementById('icon2');
+        const tracker = document.getElementById('trackerText');
 
         if (c1 && b1) {
-            b1.classList.add('done');
-            b1.innerText = "✅ Channel 1 Opened";
+            b1.classList.add('verified');
+            b1.querySelector('span').innerText = "✅ Channel 1 Joined";
+            if (i1) i1.innerText = "✓";
         }
         if (c2 && b2) {
-            b2.classList.add('done');
-            b2.innerText = "✅ Channel 2 Opened";
+            b2.classList.add('verified');
+            b2.querySelector('span').innerText = "✅ Channel 2 Joined";
+            if (i2) i2.innerText = "✓";
         }
         if (c1 && c2 && tracker) {
             tracker.style.display = 'block';
         }
     }
 
-    window.addEventListener('DOMContentLoaded', refreshState);
+    window.addEventListener('DOMContentLoaded', renderUI);
 
-    function verifyAndClaim() {
-        const c1 = localStorage.getItem('ch_1') === 'true';
-        const c2 = localStorage.getItem('ch_2') === 'true';
+    function submitClaim() {
+        const c1 = localStorage.getItem('ch_1') === 'done';
+        const c2 = localStorage.getItem('ch_2') === 'done';
         const claimBtn = document.getElementById('claimBtn');
 
-        // Agar dono link click nahi hue toh join karne ka alert
         if (!c1 || !c2) {
             alert("Aapne dono channels join nahi kiye! Kripya pehle dono channel join karein (ya request send karein) fir dobara Claim dabayein.");
             return;
         }
 
-        claimBtn.innerText = "🎁 VERIFYING MEMBERSHIP...";
+        claimBtn.innerText = "⏳ VERIFYING MEMBERSHIP...";
         claimBtn.disabled = true;
 
-        // Smooth 1.5s verification simulation & redirect
         setTimeout(() => {
-            alert("🎉 Verification successful! Aapka Diwali reward claim ho gaya.");
-            // Bot par wapas redirect
-            window.location.href = `https://t.me/YOUR_BOT_USERNAME?start=claimed_${userId}`;
-        }, 1500);
+            alert("🎉 Verification successful! Aapka reward claim ho gaya.");
+            // Bot par redirect karega jisse Bot ka 'Global Claim' aur 'My Claim' +1 ho sake
+            window.location.href = `https://t.me/${BOT_USERNAME}?start=claimed_${userId}`;
+        }, 1400);
     }
 </script>
 
