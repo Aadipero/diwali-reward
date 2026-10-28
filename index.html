@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diwali Special Reward</title>
+  <style>
+    :root {
+      --bg-dark: #0c0818;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --gold-gradient: linear-gradient(135deg, #f7ba2c 0%, #ea5455 100%);
+      --accent-gold: #ffb703;
+      --text-main: #ffffff;
+      --text-muted: #b8b3ce;
+      --btn-bg: #fffbf0;
+      --btn-text: #1a1528;
+      --green-unlocked: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 10%, #2b134b 0%, #0c0818 70%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Festive Header */
+    .diya-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 4px 10px rgba(255, 183, 3, 0.5));
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(180deg, #ffe27a 0%, #ff9e00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 22px;
+    }
+
+    /* 3D Reward Box */
+    .reward-box {
+      width: 100%;
+      background: linear-gradient(145deg, #f9b833, #f58418);
+      border-radius: 20px;
+      padding: 22px 16px;
+      color: #3b1700;
+      box-shadow: 0 16px 30px rgba(245, 132, 24, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .reward-box::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #6d2f00;
+      margin-bottom: 4px;
+    }
+
+    .amount {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #361200;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .reward-sub {
+      font-size: 14px;
+      font-weight: 700;
+      color: #4b1b00;
+      margin-bottom: 10px;
+    }
+
+    .reward-hint {
+      font-size: 12px;
+      font-weight: 500;
+      color: #5d2b07;
+    }
+
+    /* Action Buttons */
+    .action-btn {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 14px;
+      border: none;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35), inset 0 -3px 0 rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .action-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Clicked State */
+    .action-btn.done {
+      background: #e8fbf0;
+      color: #065f46;
+      border: 1px solid #34d399;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    }
+
+    .status-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 6px 0 16px;
+      transition: color 0.3s;
+    }
+
+    .status-text.ready {
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    /* Claim Button */
+    .claim-btn {
+      width: 100%;
+      padding: 16px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-radius: 14px;
+      border: none;
+      cursor: not-allowed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      /* Locked State */
+      background: #474752;
+      color: #8c8c9e;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Unlocked State */
+    .claim-btn.active {
+      cursor: pointer;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+      animation: pulse 1.8s infinite;
+    }
+
+    .claim-btn.active:active {
+      transform: translateY(2px);
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 8px 30px rgba(16, 185, 129, 0.7); }
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: #79748f;
+      line-height: 1.4;
+      margin-top: 18px;
+      padding: 0 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="diya-icon">🪔 ✨ 🎆</div>
+    <h1 class="title">Diwali Special Offer</h1>
+    <p class="subtitle">Happy Diwali! 🪔</p>
+    <p class="desc">Celebrate the festival of lights with our special reward offer.</p>
+
+    <!-- 3D Festive Card -->
+    <div class="reward-box">
+      <div class="tag">Festive Reward</div>
+      <div class="amount">₹10 – ₹30</div>
+      <div class="reward-sub">Special Diwali Reward</div>
+      <div class="reward-hint" id="cardHint">Open both Telegram channel links to continue.</div>
+    </div>
+
+    <!-- Telegram Channel Buttons -->
+    <button class="action-btn" id="btn1" onclick="openChannel(1)">
+      <span id="btn1Icon">✈️</span>
+      <span id="btn1Text">Join Telegram Channel 1</span>
+    </button>
+
+    <button class="action-btn" id="btn2" onclick="openChannel(2)">
+      <span id="btn2Icon">✈️</span>
+      <span id="btn2Text">Join Telegram Channel 2</span>
+    </button>
+
+    <p class="status-text" id="statusMessage">Open both channel links to unlock the Claim button.</p>
+
+    <!-- Claim Reward Button -->
+    <a href="javascript:void(0)" class="claim-btn" id="claimBtn" onclick="handleClaim()">
+      <span id="claimIcon">🔒</span>
+      <span id="claimText">Claim Diwali Reward</span>
+    </a>
+
+    <p class="footer-note">
+      Reward eligibility and availability depend on the offer terms. Clicking the channel buttons does not verify membership or guarantee a reward.
+    </p>
+  </div>
+
+  <script>
+    // === APNE LINKS YAHA UPDATE KAREIN ===
+    const TELEGRAM_LINK_1 = "https://t.me/+BVdVbLTiqSA4NWE1";
+    const TELEGRAM_LINK_2 = "https://t.me/hmm_tricks";
+    const CLAIM_FINAL_URL = "https://zingoy.cuelinks.com/?ref=RWE6GD6"; // Apna reward/cuelinks URL dalein
+
+    // Tracking flags
+    let clicked1 = false;
+    let clicked2 = false;
+
+    function openChannel(num) {
+      if (num === 1) {
+        clicked1 = true;
+        window.open(TELEGRAM_LINK_1, "_blank");
+        document.getElementById("btn1").classList.add("done");
+        document.getElementById("btn1Icon").innerText = "✓";
+        document.getElementById("btn1Text").innerText = "Channel 1 Link Opened";
+      } else if (num === 2) {
+        clicked2 = true;
+        window.open(TELEGRAM_LINK_2, "_blank");
+        document.getElementById("btn2").classList.add("done");
+        document.getElementById("btn2Icon").innerText = "✓";
+        document.getElementById("btn2Text").innerText = "Channel 2 Link Opened";
+      }
+
+      checkUnlock();
+    }
+
+    function checkUnlock() {
+      if (clicked1 && clicked2) {
+        const claimBtn = document.getElementById("claimBtn");
+        claimBtn.classList.add("active");
+        document.getElementById("claimIcon").innerText = "🎁";
+        document.getElementById("claimText").innerText = "CLAIM DIWALI REWARD";
+
+        const statusMsg = document.getElementById("statusMessage");
+        statusMsg.innerText = "Both channel links clicked! You can continue.";
+        statusMsg.classList.add("ready");
+
+        document.getElementById("cardHint").innerText = "Reward unlocked! Tap Claim below.";
+      }
+    }
+
+    function handleClaim() {
+      if (clicked1 && clicked2) {
+        // Final Claim page open
+        window.location.href = CLAIM_FINAL_URL;
+      } else {
+        alert("Pehle dono Telegram channel links open karein claim unlock karne ke liye!");
+      }
+    }
+  </script>
+</body>
+</html>
