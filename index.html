@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Diwali Special Reward</title>
+    <title>Amazon Gift Card</title>
     <!-- Telegram Mini App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
@@ -16,48 +16,40 @@
         }
 
         body {
-            background: radial-gradient(circle at top, #1c1335 0%, #0a0714 100%);
+            background: radial-gradient(circle at top, #1e1b2e 0%, #0c0a14 100%);
             color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 16px;
+            padding: 20px;
         }
 
         .card {
-            background: rgba(26, 20, 48, 0.75);
+            background: rgba(28, 23, 46, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 204, 0, 0.2);
+            border: 1px solid rgba(255, 204, 0, 0.25);
             border-radius: 24px;
-            max-width: 390px;
+            max-width: 380px;
             width: 100%;
-            padding: 28px 20px 22px;
+            padding: 30px 20px 24px;
             text-align: center;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
         }
 
-        .diwali-badge {
+        .badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 187, 38, 0.12);
-            border: 1px solid rgba(255, 187, 38, 0.35);
+            background: rgba(46, 204, 113, 0.15);
+            border: 1px solid #2ecc71;
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 13px;
-            color: #ffd452;
-            font-weight: 600;
-            margin-bottom: 12px;
-            animation: pulseGlow 2.5s infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 187, 38, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(255, 187, 38, 0.45); }
+            color: #2ecc71;
+            font-weight: 700;
+            margin-bottom: 16px;
         }
 
         h2 {
@@ -67,27 +59,26 @@
             background: linear-gradient(135deg, #fff2a3, #ffb834);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .subtitle {
             font-size: 13px;
             color: #a49bc7;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
-        .reward-box {
+        .voucher-box {
             background: linear-gradient(135deg, #f3a826 0%, #d48310 100%);
             border-radius: 16px;
-            padding: 18px 16px;
-            margin-bottom: 20px;
+            padding: 20px 16px;
+            margin-bottom: 24px;
             color: #261600;
             box-shadow: 0 8px 24px rgba(212, 131, 16, 0.35);
-            position: relative;
         }
 
-        .reward-tag {
+        .voucher-tag {
             font-size: 11px;
             font-weight: 800;
             letter-spacing: 2px;
@@ -95,50 +86,10 @@
             text-transform: uppercase;
         }
 
-        .reward-value {
-            font-size: 38px;
+        .voucher-amount {
+            font-size: 42px;
             font-weight: 900;
             margin-top: 4px;
-            letter-spacing: -0.5px;
-        }
-
-        .channel-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #211a3b;
-            color: #f7d668;
-            text-decoration: none;
-            padding: 14px 18px;
-            margin: 10px 0;
-            border-radius: 14px;
-            font-size: 14.5px;
-            font-weight: 700;
-            border: 1px solid #3d3163;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .channel-btn:active {
-            transform: scale(0.98);
-        }
-
-        .channel-btn.verified {
-            background: #143525;
-            border-color: #27ae60;
-            color: #2ecc71;
-        }
-
-        .channel-btn .icon {
-            font-size: 18px;
-        }
-
-        .status-tracker {
-            font-size: 13px;
-            color: #2ecc71;
-            font-weight: 600;
-            margin: 14px 0 6px;
-            display: none;
         }
 
         .claim-btn {
@@ -151,7 +102,6 @@
             font-weight: 800;
             border-radius: 14px;
             cursor: pointer;
-            margin-top: 10px;
             box-shadow: 0 8px 24px rgba(0, 176, 116, 0.35);
             transition: all 0.2s ease;
         }
@@ -160,111 +110,49 @@
             transform: scale(0.98);
         }
 
-        .claim-btn:disabled {
-            background: #252b33;
-            color: #6a7684;
-            box-shadow: none;
-            cursor: not-allowed;
-        }
-
-        .footer-note {
+        .footer-text {
             font-size: 11.5px;
-            color: #6c6488;
-            margin-top: 16px;
+            color: #7b719c;
+            margin-top: 18px;
         }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <div class="diwali-badge">🪔 Diwali Festive Gift</div>
-    <h2>DIWALI SPECIAL OFFER</h2>
-    <p class="subtitle">Dono channels join karein aur turant apna exclusive gift card reward unlock karein.</p>
+    <div class="badge">✅ Verification Complete</div>
+    <h2>AMAZON GIFT CARD</h2>
+    <p class="subtitle">Aapka reward successfully unlock ho chuka hai. Niche click karke turant claim karein.</p>
 
-    <div class="reward-box">
-        <div class="reward-tag">FESTIVE VOUCHER</div>
-        <div class="reward-value">₹10 - ₹99</div>
+    <div class="voucher-box">
+        <div class="voucher-tag">GIFT CARD VALUE</div>
+        <div class="voucher-amount">₹10</div>
     </div>
 
-    <!-- Apne Channel 1 aur 2 ke direct Telegram invite links yahan paste karein -->
-    <a href="https://t.me/+BVdVbLTiqSA4NWE1" target="_blank" class="channel-btn" id="btn1" onclick="handleChannelClick(1)">
-        <span>📢 Join Channel 1</span>
-        <span class="icon" id="icon1">➔</span>
-    </a>
-
-    <a href="https://t.me/+OrNciNxSDrQ5MjI1" target="_blank" class="channel-btn" id="btn2" onclick="handleChannelClick(2)">
-        <span>📢 Join Channel 2</span>
-        <span class="icon" id="icon2">➔</span>
-    </a>
-
-    <div id="trackerText" class="status-tracker">✅ Both links opened! Click claim to verify.</div>
-
-    <button class="claim-btn" id="claimBtn" onclick="submitClaim()">
-        🎁 CLAIM REWARD
+    <button class="claim-btn" onclick="claimReward()">
+        🎁 CLAIM ON ZINGOY
     </button>
 
-    <div class="footer-note">Secure automated verification • Instant delivery</div>
+    <div class="footer-text">Instant Voucher Activation • Secure Delivery</div>
 </div>
 
 <script>
-    // Aapka Zingoy claim link yahan set hai
-    const CLAIM_OFFER_URL = "https://zingoy.cuelinks.com/?ref=RWE6GD6";
+    // Aapka Zingoy Affiliate Link
+    const ZINGOY_URL = "https://zingoy.cuelinks.com/?ref=RWE6GD6";
 
-    // Telegram WebApp expand
+    // Telegram Mini App Ready & Expand to Full Screen
     if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
     }
 
-    function handleChannelClick(num) {
-        localStorage.setItem('ch_' + num, 'done');
-        renderUI();
-    }
-
-    function renderUI() {
-        const c1 = localStorage.getItem('ch_1') === 'done';
-        const c2 = localStorage.getItem('ch_2') === 'done';
-
-        const b1 = document.getElementById('btn1');
-        const b2 = document.getElementById('btn2');
-        const i1 = document.getElementById('icon1');
-        const i2 = document.getElementById('icon2');
-        const tracker = document.getElementById('trackerText');
-
-        if (c1 && b1) {
-            b1.classList.add('verified');
-            b1.querySelector('span').innerText = "✅ Channel 1 Joined";
-            if (i1) i1.innerText = "✓";
+    function claimReward() {
+        // Telegram Mini App se external link open karne ka safe tareeqa
+        if (window.Telegram?.WebApp?.openLink) {
+            window.Telegram.WebApp.openLink(ZINGOY_URL);
+        } else {
+            window.location.href = ZINGOY_URL;
         }
-        if (c2 && b2) {
-            b2.classList.add('verified');
-            b2.querySelector('span').innerText = "✅ Channel 2 Joined";
-            if (i2) i2.innerText = "✓";
-        }
-        if (c1 && c2 && tracker) {
-            tracker.style.display = 'block';
-        }
-    }
-
-    window.addEventListener('DOMContentLoaded', renderUI);
-
-    function submitClaim() {
-        const c1 = localStorage.getItem('ch_1') === 'done';
-        const c2 = localStorage.getItem('ch_2') === 'done';
-        const claimBtn = document.getElementById('claimBtn');
-
-        if (!c1 || !c2) {
-            alert("Aapne dono channels join nahi kiye! Kripya pehle dono channel join karein.");
-            return;
-        }
-
-        claimBtn.innerText = "⏳ REDIRECTING TO OFFER...";
-        claimBtn.disabled = true;
-
-        setTimeout(() => {
-            // User ko seedha Zingoy offer page par bhej dega
-            window.location.href = CLAIM_OFFER_URL;
-        }, 1000);
     }
 </script>
 
